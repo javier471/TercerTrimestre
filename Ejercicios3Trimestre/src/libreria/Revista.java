@@ -12,5 +12,11 @@ public class Revista extends Publicacion{
 	public String toString() {
 		return "Revista [numero=" + numero + "]";
 	}
+
+	@Override
+	public int compareTo(Publicacion arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
