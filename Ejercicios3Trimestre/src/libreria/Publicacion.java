@@ -1,10 +1,14 @@
 package libreria;
 
-public class Publicacion {
+public abstract class Publicacion {
 	private int cod;
 	private String titulo;
 	private Tematica tematica;
 	private int anoPublicacion;
+	
+
+
+
 	public Publicacion(int cod, String titulo, Tematica tematica, int anoPublicacion) {
 		super();
 		this.cod = cod;
@@ -12,16 +16,18 @@ public class Publicacion {
 		this.tematica = tematica;
 		this.anoPublicacion = anoPublicacion;
 	}
+
 	@Override
 	public String toString() {
 		return "Publicacion [cod=" + cod + ", titulo=" + titulo + ", anoPublicacion=" + anoPublicacion + "]";
 	}
+
 	public int getCod() {
 		return cod;
 	}
+
 	public int getAnoPublicacion() {
 		return anoPublicacion;
 	}
-	
-	
+
 }
