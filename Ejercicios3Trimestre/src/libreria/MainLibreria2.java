@@ -1,13 +1,17 @@
 package libreria;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
-public class MainLibreria {
+public class MainLibreria2 {
 
 	public static Scanner teclado = new Scanner(System.in);
 	public static Publicacion array[] = new Publicacion[100];
 	public static int numPublicaciones = 0;
+	public static Set<Publicacion> libros=new HashSet<Publicacion>();
 	
 	public static void main(String[] args) {
 		
@@ -23,7 +27,8 @@ public class MainLibreria {
 				String titulo = leerString("Introduce el titutlo del libro");
 				Tematica tematica = Tematica.valueOf(leerString("Introduce la tematica del libro"));
 				int anoPublicacion = leerEntero("Introduce el año de la publicación");
-				array[numPublicaciones++] = new Libro(codigo,titulo, tematica,anoPublicacion);
+				Libro l1 = new Libro(codigo,titulo, tematica,anoPublicacion);
+				libros.add(l1);
 				break;
 				}
 			
@@ -33,22 +38,20 @@ public class MainLibreria {
 				Tematica tematica = Tematica.valueOf(leerString("Introduce la tematica del libro"));
 				int anoPublicacion = leerEntero("Introduce el año de la publicación");
 				int numero = leerEntero("Introduce el número de la revista");
-				array[numPublicaciones++] = new Revista(codigo,titulo, tematica,anoPublicacion, numero);
+				Revista r1 = new Revista(codigo,titulo, tematica,anoPublicacion, numero);
+				libros.add(r1);
 				break;
 				}
 			case 3: {
 				String titulo = leerString("Introduce el título de la revista o libro");
-				int pos = encuentraLibroRevista(titulo);
-				if (pos == -1) System.out.println("Libro o revista no encontrada");
-				else {
-					if (array[pos] instanceof Libro) {
-						Libro l = (Libro) array[pos];
-						if (l.prestado())
-							System.out.println("El libro está prestado");
-						else
-							System.out.println("El libro NO está prestado");
-					}else
-						System.out.println("Las revistas no se prestan");
+				Iterator<Publicacion> publi=libros.iterator();
+				boolean encontrado=false;
+				while (publi.hasNext()&& !encontrado) {
+					Publicacion p=publi.next();
+					System.out.println();
+					if (publi.next().getTitulo().equals(titulo)) {
+						System.out.println(publi.next());
+					}
 				}
 			}
 				break;
@@ -144,4 +147,3 @@ public class MainLibreria {
 		return -1;
 	}
 }
-//Preguntar los do while, array, valueOf, instanceOf,sort
