@@ -48,9 +48,16 @@ public class MainLibreria2 {
 				boolean encontrado=false;
 				while (publi.hasNext()&& !encontrado) {
 					Publicacion p=publi.next();
-					System.out.println();
-					if (publi.next().getTitulo().equals(titulo)) {
-						System.out.println(publi.next());
+					if(p.getTitulo().equals(titulo)) {
+						if (p instanceof Revista) {
+							System.out.println("Las revistas no se prestan");
+						}
+						else if(((Libro)p).prestado()) {
+							System.out.println("El libro está prestado");
+						}
+						else {
+							System.out.println("El libro No está prestado");
+						}
 					}
 				}
 			}
@@ -66,9 +73,10 @@ public class MainLibreria2 {
 							System.out.println("El libro está prestado");
 						else
 							l.prestar();
-					}else
-						System.out.println("Las revistas no se prestan");
+					
+						
 				}
+			}
 			}
 				break;
 			case 5: {
@@ -91,10 +99,14 @@ public class MainLibreria2 {
 			case 6: {
 				
 				String titulo = leerString("Introduce el título de la revista o libro");
-				int pos = encuentraLibroRevista(titulo);
-				if (pos == -1) System.out.println("Libro o revista no encontrada");
-				else System.out.println(array[pos]);				
-				break;
+				Iterator<Publicacion> publi=libros.iterator();
+				boolean encontrado=false;
+				while (publi.hasNext()&& !encontrado) {
+					Publicacion p=publi.next();
+					if(p.getTitulo().equals(titulo)) {
+						System.out.println(p);
+					}
+				}
 			}
 			case 7: 
 				Arrays.sort(array, 0, numPublicaciones);
